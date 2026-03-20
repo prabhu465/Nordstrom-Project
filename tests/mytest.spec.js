@@ -1,0 +1,45 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/');
+  await page.getByRole('link', { name: 'Log in' }).click();
+  await page.locator('#loginusername').click();
+  await page.locator('#loginusername').fill('prabubodi');
+  await page.locator('#loginusername').press('Tab');
+  await page.locator('#loginpassword').fill('prabu123');
+  await page.getByRole('button', { name: 'Log in' }).click();
+  await page.getByRole('button', { name: 'Log in' }).click();
+  await page.getByRole('button', { name: 'Log in' }).click();
+  await page.getByRole('button', { name: 'Log in' }).click();
+  await page.getByRole('button', { name: 'Log in' }).click();
+  await page.getByRole('link', { name: 'Welcome prabubodi' }).click();
+  await page.getByRole('link', { name: 'Iphone 6 32gb' }).click();
+  page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.dismiss().catch(() => {});
+  });
+  await page.getByRole('link', { name: 'Add to cart' }).click();
+  await page.getByRole('link', { name: 'Cart', exact: true }).click();
+  await page.getByRole('button', { name: 'Place Order' }).click();
+  await page.getByRole('textbox', { name: 'Total: 1150 Name:' }).click();
+  await page.getByRole('textbox', { name: 'Total: 1150 Name:' }).fill('prabu');
+  await page.getByRole('textbox', { name: 'Total: 1150 Name:' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Country:' }).fill('india');
+  await page.getByRole('textbox', { name: 'Country:' }).press('Tab');
+  await page.getByRole('textbox', { name: 'City:' }).fill('bodinakanur');
+  await page.getByRole('textbox', { name: 'City:' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Credit card:' }).fill('kmdklfdfdmsfsdf;sdf');
+  await page.getByRole('textbox', { name: 'Credit card:' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Month:' }).fill('dkfdklfjd');
+  await page.getByRole('textbox', { name: 'Year:' }).click();
+  await page.getByRole('textbox', { name: 'Year:' }).fill('dfdsfdsf');
+  await page.getByRole('textbox', { name: 'Year:' }).press('ArrowDown');
+  await page.getByRole('textbox', { name: 'Year:' }).press('ArrowDown');
+  await page.getByRole('textbox', { name: 'Year:' }).press('ArrowDown');
+  await page.getByRole('textbox', { name: 'Year:' }).press('Tab');
+  await page.getByLabel('Place order').getByText('Close').press('Tab');
+  await page.getByRole('button', { name: 'Purchase' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Month:' }).click();
+  await page.getByRole('textbox', { name: 'Credit card:' }).dblclick();
+  await page.getByRole('textbox', { name: 'Credit card:' }).fill('1234567890');
+});
